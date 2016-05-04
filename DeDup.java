@@ -1,10 +1,10 @@
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 public class DeDup {
 
 	public int[] randomIntegers = { 1, 2, 34, 34, 25, 1, 45, 3, 26, 85, 4, 34,
@@ -56,27 +56,19 @@ public class DeDup {
 	}
 	
 	public Integer[] getArrayWithNoDuplicatesMaintaningOrder() {
-		List<Integer> listNumbers = new ArrayList<Integer>();
-		for (int number : randomIntegers) {
-			if (!listNumbers.contains(number)) {
-				listNumbers.add(number);
-			}
-		}
-		return listNumbers.toArray(new Integer[0]);
+		List<Integer> arrayWithNoDups=Arrays.stream(randomIntegers).boxed().distinct().collect(Collectors.toList());
+		return arrayWithNoDups.toArray(new Integer[0]);
 	}
 	
 	public Integer[] getArrayWithNoDuplicatesAndNonNegative() {
-		List<Integer> collect = Arrays.stream(randomIntegers).boxed()
+		List<Integer> arrayWithNoDupsNoNeg = Arrays.stream(randomIntegers).boxed()
 				.filter(x -> x >= 0).distinct().collect(Collectors.toList());
-		return collect.toArray(new Integer[0]);
+		return arrayWithNoDupsNoNeg.toArray(new Integer[0]);
 	}
 
 	public Integer[] getArrayWithNoDuplicatesOrderNotMaintained() {
-		Set<Integer> numberSet = new HashSet<Integer>();
-		for (int number : randomIntegers) {
-			numberSet.add(number);
-		}
-		return numberSet.toArray(new Integer[0]);
+		Set<Integer> arrayWithNoDupsNoOrder=Arrays.stream(randomIntegers).boxed().collect(Collectors.toSet());
+		return arrayWithNoDupsNoOrder.toArray(new Integer[0]);
 	}
 	
 }
